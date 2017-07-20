@@ -8,7 +8,6 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'lib'),
         filename: 'index.js',
-        library: 'Banner',//作为全局变量时的名字
         libraryTarget: 'commonjs'
     },
     // externals: {
