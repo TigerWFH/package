@@ -8,4 +8,4 @@ let o = {
   }
 }
 
-export default o ;
+export { o } ;

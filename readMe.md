@@ -48,13 +48,139 @@ import o from 'package';
 
 ```
 
+* 第一种方式
+    // index.js
+    ```
+    let o = {
+    name: "monkey",
+    getName: () => {
+        return o.name;
+    },
+    setName: (name) => {
+        o.name = name;
+    }
+    }
+
+    export default o ;
+    ```
+    // app.js
+    ```
+    import o from 'package';//此处的o随意命名，代表最外层对象
+    // import {default} from 'package';//报错，default是关键字
+
+    console.log("===>", o.default.name);
+
+    ```
+    // webpack.config.js
+    ```
+    output: {
+        path: path.join(__dirname, 'lib'),
+        filename: 'index.js',
+        libraryTarget: 'commonjs'
+    }
+    ```
+* 第二种方式
+    // index.js
+    ```
+    let o = {
+    name: "monkey",
+    getName: () => {
+        return o.name;
+    },
+    setName: (name) => {
+        o.name = name;
+    }
+    }
+
+    export { o };
+    ```
+    // app.js
+    ```
+    // 第1种
+    import o from 'package';//此处的o随意命名，代表最外层对象
+    // import {default} from 'package';//报错，default是关键字
+
+    console.log("===>", o.o.name);
+    // 第2种
+    import {o} from 'package';//就是结构对象
+
+    console.log('banner==>', o.name);
+
+    ```
+    // webpack.config.js
+    ```
+    output: {
+        path: path.join(__dirname, 'lib'),
+        filename: 'index.js',
+        libraryTarget: 'commonjs'
+    }
+    ```
+* 第三种方式
+   // index.js
+    ```
+    let o = {
+    name: "monkey",
+    getName: () => {
+        return o.name;
+    },
+    setName: (name) => {
+        o.name = name;
+    }
+    }
+
+    export default o ;
+    ```
+    // app.js
+    ```
+    import o from 'package';//此处的o随意命名，代表最外层对象
+    //import {banner} from 'package';
+
+    console.log("===>", o.banner.default.name);
+    //console.log("===>", banner.default.name);
+
+    ```
+    // webpack.config.js
+    ```
+    output: {
+        path: path.join(__dirname, 'lib'),
+        filename: 'index.js',
+        library: 'banner',
+        libraryTarget: 'commonjs'
+    }
+    ```
+    * 第四种方式
+   // index.js
+    ```
+    let o = {
+    name: "monkey",
+    getName: () => {
+        return o.name;
+    },
+    setName: (name) => {
+        o.name = name;
+    }
+    }
+
+    export { o };
+    ```
+    // app.js
+    ```
+    import o from 'package';//此处的o随意命名，代表最外层对象
+    //import {banner} from 'package';
+
+    console.log("===>", o.banner.o.name);
+    //console.log("===>", banner.o.name);
+
+    ```
+    // webpack.config.js
+    ```
+    output: {
+        path: path.join(__dirname, 'lib'),
+        filename: 'index.js',
+        library: 'banner',
+        libraryTarget: 'commonjs'
+    }
+    ```
+
 总结：
-    如果使用library，则library是作为webpack打包的最外层组件属性导出的，而要导出的组件则是library的属性导出
-    ```
-    要导出的组件是banner
-    library配置为Banner
-    则访问方式是：
-    import {Banner} from 'package';
-    Banner.banner才是最终的组件（export {banner}）或者，
-    Banner.default才是最终的组件(export default banner)
-    ```
+    作为组件使用，尽量不用library，尽量不用default导出。
