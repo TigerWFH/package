@@ -1,6 +1,8 @@
-exports = module.exports = {
+let obj = {
     name: "monkey",
     getName: () => {
-        return this.name;
+        return obj.name;
     }
-}
+};
+
+exports = module.exports = obj;
