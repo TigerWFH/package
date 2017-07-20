@@ -22,7 +22,7 @@
         |--->readMe.md
 
 # webpack配置说明
-* 不配置library
+* 不配置library且使用export{o}导出方式
 ```
 // src
 output{
