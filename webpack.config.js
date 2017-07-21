@@ -4,11 +4,10 @@ const path = require('path');
 let sourcePath = path.join(__dirname, 'src');
 let biuldPath = path.join(__dirname, 'lib');
 module.exports = {
-    entry: './index.js',
+    entry: './src/banner.jsx',
     output: {
         path: path.join(__dirname, 'lib'),
         filename: 'index.js',
-        library: 'banner',
         libraryTarget: 'commonjs'
     },
     // externals: {
