@@ -4,50 +4,32 @@
 
     package
         |
-        |--->lib
+        |
+        |--->src(源代码)
+        |   |
+        |   |
+        |   |--->common(通用工具，资源)
+        |   |
+        |   |--->(源文件)
+        |
+        |--->lib(导出的包)
         |
         |
-        |--->test
+        |--->test(单元测试)
         |
         |
-        |--->doc
+        |--->doc(相关文档)
         |
         |
-        |--->bin
+        |--->bin(可执行文件)
         |
         |
-        |--->package.json
+        |--->package.json(包描述文件)
         |
         |
-        |--->readMe.md
+        |--->readMe.md(项目相关描述)
 
 # webpack配置说明
-* 不配置library且使用export{o}导出方式
-```
-// src
-output{
-    path: path.join(__dirname, 'lib'),
-        filename: 'index.js',
-        libraryTarget: 'commonjs'
-}
-export {o};
-// target
-import {o} from 'package';//此处就是结构对象，换成oo就会出错
-```
-* 不配置library且使用export default o导出方式
-```
-output{
-    path: path.join(__dirname, 'lib'),
-        filename: 'index.js',
-        libraryTarget: 'commonjs'
-}
-export default o;
-//target
-import o from 'package';
-但是o.default才是真正的要导出的对象，因为default是关键字，不能使用结构对象方式
-
-```
-
 * 第一种方式
     // index.js
     ```
@@ -194,4 +176,4 @@ import o from 'package';
     原因是：webpack对大小写敏感，而node_modules中react是小写，用大写则找不到对应的包
 
     问题：
-    ![问题](./webpack-problem.png)
+    ![问题](./src/common/images/webpack-problem.png)
