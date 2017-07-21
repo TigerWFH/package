@@ -10,9 +10,9 @@ module.exports = {
         filename: 'index.js',
         libraryTarget: 'commonjs'
     },
-    // externals: {
-    //     react: "React"
-    // },
+    externals: {
+        react: "react"
+    },
     module: {
         rules: [
             {

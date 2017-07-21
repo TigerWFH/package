@@ -184,3 +184,14 @@ import o from 'package';
 
 总结：
     作为组件使用，尽量不用library，尽量不用default导出。
+
+* external 碰到的问题
+
+    external配置:react:"React"，会产生找不到包的问题。
+
+    改成: react: "react"。
+
+    原因是：webpack对大小写敏感，而node_modules中react是小写，用大写则找不到对应的包
+
+    问题：
+    ![问题](./webpack-problem.png)
