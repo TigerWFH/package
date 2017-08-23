@@ -180,3 +180,6 @@
     ![问题](./src/common/images/webpack-problem.png)
 
 # npm包知识
+
+* bin:注册终端命令
+* script: 运行终端命令
